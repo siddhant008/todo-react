@@ -55,7 +55,7 @@ const Navbar = (props) => {
         },
         content: {
             flexGrow: 1,
-            padding: theme.spacing(3),
+            padding: theme.spacing(2),
         },
     }));
 

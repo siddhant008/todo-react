@@ -36,8 +36,10 @@ const Home = () => {
     return(
         <div>
             <CreateTodo todos={todos} setTodos={setTodos}/>
+            <br/>
             <hr/>
-            {a}
+            <div className="allNotesClass">{a}</div>
+
         </div>
     )
 }

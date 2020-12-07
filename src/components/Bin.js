@@ -14,22 +14,22 @@ const Bin = () => {
             .catch(error => console.log(error));
     }, []);
 
-    let a = Object.keys(binTodos).map(binTodoKey => {
+    let a =[];
+    Object.keys(binTodos).map(binTodoKey => {
             if (binTodos[binTodoKey].bin) {
-                return<Todo
+                a.push(<Todo
                     todos={binTodos} setTodos={setBinTodos}
                     key={binTodoKey} index={binTodoKey}
                     bin={true}
                     title={binTodos[binTodoKey].title}
                     description={binTodos[binTodoKey].description}
-                />
+                />)
             }
         }
     )
     return (
         <div className="TodoList">
-            {/*{!a.includes(undefined) ? a : <div><b>There are currently no Notes in your Bin.</b></div> }*/}
-            {a}
+            {a.length ? a : <p><i>There are no notes in bin.</i></p>}
         </div>
     );
 }

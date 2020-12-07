@@ -25,8 +25,10 @@ const useStyles = makeStyles({
         textAlign: "center"
     },
     description: {
+        width: 220,
         position: "relative",
-        height: 85
+        height: 85,
+        // overflow: "auto"
     }
 });
 
@@ -82,7 +84,7 @@ const Todo = (props) => {
             })
             .catch(error => console.log(error));
     }
-    console.log(props.todos[props.index].pinned)
+
     let buttons = props.bin ?
         <span className="binCrossMark"><Button onClick={toMyNotesHandler}><RestoreIcon/></Button></span> :
         <div>

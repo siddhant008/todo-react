@@ -4,12 +4,17 @@ import axios from "../axios-notes";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {makeStyles} from '@material-ui/core/styles';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        width: 250,
+        textAlign: 'center',
         '& .MuiTextField-root': {
             margin: theme.spacing(1),
             width: '25ch',
+
         },
     },
 }));
@@ -23,18 +28,20 @@ const CreateTodo = (props) => {
     const titleHandler = (e) => {
         const updatedTodo = {...tempTodo};
         updatedTodo.title = e.target.value;
-        let tempError = {...error}
-        !tempTodo.title ? tempError.t=true : tempError.t=false;
-        setError(tempError);
         setTempTodo(updatedTodo);
+        let tempError = {...error}
+        !e.target.value ? tempError.t=true : tempError.t=false;
+        console.log(tempError.t, )
+        setError(tempError);
+
     }
     const descriptionHandler = (e) => {
         const updatedTodo = {...tempTodo};
         updatedTodo.description = e.target.value;
-        let tempError = {...error}
-        !tempTodo.description ? tempError.d=true : tempError.d=false;
-        setError(tempError);
         setTempTodo(updatedTodo);
+        let tempError = {...error}
+        !e.target.value ? tempError.d=true : tempError.d=false;
+        setError(tempError);
     }
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -63,13 +70,10 @@ const CreateTodo = (props) => {
     }
 
     return (
-        // <form className="createTodoForm">
-
         <form className={classes.root} noValidate autoComplete="off">
-
             <TextField
+                required
                 error={error.t}
-                /*{error.d ? 'hide':'show'}*/
                 id="outlined-required"
                 label="Title"
                 variant="outlined"
@@ -85,7 +89,12 @@ const CreateTodo = (props) => {
                 onChange={descriptionHandler}
                 value={tempTodo.description}
             /> <br/>
-            <Button variant='contained' color='primary' onClick={onSubmitHandler}> Create </Button>
+            <Button
+                endIcon={<AddCircleOutlineIcon/>}
+                variant='contained'
+                color='primary'
+                onClick={onSubmitHandler}
+            > Create </Button>
         </form>
     );
 
